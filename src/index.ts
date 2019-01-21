@@ -19,6 +19,8 @@ import { ConfirmUserResolver } from './modules/user/ConfirmUser';
 import { ForgotPasswordResolver } from './modules/user/ForgotPassword';
 import { ChangePasswordResolver } from './modules/user/ChangePassword';
 import { LogoutResolver } from './modules/user/Logout';
+import { CreateDeckResolver } from './modules/user/CreateDeck';
+import { MyDecksResolver } from './modules/deck/MyDecks';
 
 const main = async () => {
     // createConnection reads from ormconfig.json
@@ -32,7 +34,9 @@ const main = async () => {
             LoginResolver, 
             MeResolver, 
             ConfirmUserResolver,
-            ForgotPasswordResolver
+            ForgotPasswordResolver,
+            CreateDeckResolver,
+            MyDecksResolver
         ],
         authChecker: ({ context: { req } }) => {
              return !!req.session.userId

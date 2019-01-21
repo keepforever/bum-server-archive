@@ -1,54 +1,76 @@
-query MeQuery {
-    me {
+mutation MyRegister {
+    A: register(data: { nickName: "a", password: "a", email: "a@a.com" }) {
         id
-        firstName
-        lastName
+        nickName
         email
-        name
+    }
+    B: register(data: { nickName: "b", password: "b", email: "b@b.com" }) {
+        id
+        nickName
+        email
     }
 }
 
-mutation MyRegister {
-    register(
-        data: { firstName: "x", lastName: "x", password: "x", email: "x@x.com" }
-    ) {
+mutation MyLogin_A {
+    login(password: "a", email: "a@a.com") {
         id
-        name
         email
     }
 }
-mutation MyLogin {
-    login(password: "aaa", email: "x@x.com") {
+
+mutation MyLogin_B {
+    login(password: "b", email: "b@b.com") {
+        id
+        email
+    }
+}
+
+query MeQuery {
+    me {
+        id
+        email
+        nickName
+    }
+}
+
+mutation MyCreateDeck {
+    createDeck(
+        description: "deck description"
+        name: "deck name"
+        deckList: "card A \n card-B \n "
+    ) {
+        name
+        deckList
+        description
+    }
+}
+
+query MyMyDecks {
+    myDecks(userId: 1) {
         name
         id
-        firstName
-        email
+        deckList
     }
 }
 
 mutation MyConfirmUser {
-    confirmUser(token: "ba0e4ed1-3fe5-4ae3-be88-39a0b2d3f962")
-}
-
-query MyHelloQuery {
-    hello
-}
-
-query MyGoodbyeQuery {
-    goodbye
+    confirmUser(token: "50f80527-9552-4409-96f5-0900a613d881")
 }
 
 mutation MyForgotPassword {
-    forgotPassword(email: "x@x.com")
+    forgotPassword(email: "p@p.com")
 }
 
 mutation MyChangePassword {
     changePassword(
-        data: { token: "9b6a4918-f2d0-4997-9c18-f2bb36b9d8ec", password: "aaa" }
+        data: { token: "4a860379-55b4-4227-8c2a-fcdde89d1878", password: "pp" }
     ) {
-        name
-        lastName
-        firstName
         id
+        nickName
+        email
     }
+}
+
+mutation MyLogout {
+    logout
 }

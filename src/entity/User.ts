@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
+import { Deck } from './Deck';
 
 @ObjectType() // turns User entity into a graphql object type
 @Entity()
@@ -20,9 +21,12 @@ export class User extends BaseEntity {
     @Column()
     password: string;
 
-    // in absence of the @Field() decorator, this field will only
-    // be accessable on the server side and will not show up in
-    // graphql schema.
-    @Column('bool', { default: false })
+    // TODO: switch default to 'false' to implement 
+    // confirmation email pattern. 
+    @Column('bool', { default: true })
     confirmed: boolean;
+
+    @Field(() => Deck)
+    @OneToMany(() => Deck, deck => deck.user)
+    decks: Deck[];
 }
