@@ -31,12 +31,27 @@ query MeQuery {
         email
         nickName
     }
+    myDecks {
+        id
+        name
+        deckList
+        description
+    }
 }
 
 mutation MyCreateDeck {
-    createDeck(
-        description: "deck description"
-        name: "deck name"
+    A: createDeck(
+        description: "deck A description"
+        name: "deck A name"
+        deckList: "card A \n card-B \n "
+    ) {
+        name
+        deckList
+        description
+    }
+    B: createDeck(
+        description: "deck B description"
+        name: "deck B name"
         deckList: "card A \n card-B \n "
     ) {
         name
@@ -45,8 +60,12 @@ mutation MyCreateDeck {
     }
 }
 
+mutation MyDeleteDeck {
+    deleteDeck(deckId: 5)
+}
+
 query MyMyDecks {
-    myDecks(userId: 1) {
+    myDecks {
         name
         id
         deckList

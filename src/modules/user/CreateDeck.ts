@@ -38,4 +38,35 @@ export class CreateDeckResolver {
 
         return deck;
     }
+
+    @Mutation(() => Boolean, { nullable: true })
+    async deleteDeck(
+        @Arg('deckId') id: number,
+        @Ctx() ctx: MyContext,
+    ): Promise<boolean> {
+        // make sure user is authenticated
+        if (!ctx.req.session!.userId) {
+            return false;
+        }
+
+        const deckToDelete = await Deck.findOne({id})
+
+        if(!deckToDelete) {
+            console.log(`deck with id = ${id} doesn't exist`);
+            return false
+        }
+
+        const isUserDeckCreator = deckToDelete.userId === ctx.req.session!.userId;
+
+        if(isUserDeckCreator) {
+            const res = await Deck.delete({id})
+            console.log(`
+                DELETE DECK RESPONSE
+            `, '\n', res, '\n',
+            ` ^^^^^^^^^^^^^^^`);
+            return true;
+        } else {
+            return false
+        }
+    }
 }
