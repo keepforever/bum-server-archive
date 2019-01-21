@@ -5,7 +5,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "postgres",
-    "database": "typegraphql-example",
+    "database": "bumcheeks-01",
     "synchronize": true,
     "logging": true,
     "entities": ["src/entity/*.*"]

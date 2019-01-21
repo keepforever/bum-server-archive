@@ -5,18 +5,17 @@ import { IsEmailAlreadyExist } from "./isEmailAlreadyExist";
 @InputType()
 export class RegisterInput {
     @Field()
-    @Length(1, 255, {message: "my custom error message for graphql to return in the event this validation constraint is not satisfied"})
-    firstName: string;
-
-    @Field()
     @Length(1, 255)
-    lastName: string;
+    nickName: string;
 
     @Field()
     @IsEmail()
-    @IsEmailAlreadyExist({ message: "email already in use" }) // this custom decorator necessitates the isEmailAlreadyExiist.ts file adjacent to this file
+    @IsEmailAlreadyExist({ message: 'email already in use' })
     email: string;
 
     @Field()
     password: string;
 }
+
+// NOTE: isEmailAlreadyExist is an example of creating a 
+// custom decorator for validation's sake. 
