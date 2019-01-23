@@ -1,95 +1,97 @@
 mutation MyRegister {
-    A: register(data: { nickName: "a", password: "a", email: "a@a.com" }) {
-        id
-        nickName
-        email
-    }
-    B: register(data: { nickName: "b", password: "b", email: "b@b.com" }) {
-        id
-        nickName
-        email
-    }
+  A: register(data: { nickName: "a", password: "a", email: "a@a.com" }) {
+    id
+    nickName
+    email
+  }
+  B: register(data: { nickName: "b", password: "b", email: "b@b.com" }) {
+    id
+    nickName
+    email
+  }
 }
 
 mutation MyLogin_A {
-    login(password: "a", email: "a@a.com") {
-        id
-        email
-    }
+  login(password: "a", email: "a@a.com") {
+    id
+    nickName
+    email
+  }
 }
 
 mutation MyLogin_B {
-    login(password: "b", email: "b@b.com") {
-        id
-        email
-    }
+  login(password: "b", email: "b@b.com") {
+    id
+    nickName
+    email
+  }
 }
 
 query MeQuery {
-    me {
-        id
-        email
-        nickName
-    }
-    myDecks {
-        id
-        name
-        deckList
-        description
-    }
+  me {
+    id
+    email
+    nickName
+  }
+  myDecks {
+    id
+    name
+    deckList
+    description
+  }
 }
 
 mutation MyCreateDeck {
-    A: createDeck(
-        description: "deck A description"
-        name: "deck A name"
-        deckList: "card A \n card-B \n "
-    ) {
-        name
-        deckList
-        description
-    }
-    B: createDeck(
-        description: "deck B description"
-        name: "deck B name"
-        deckList: "card A \n card-B \n "
-    ) {
-        name
-        deckList
-        description
-    }
+  A: createDeck(
+    description: "deck A description"
+    name: "deck A name"
+    deckList: "card A \n card-B \n "
+  ) {
+    name
+    deckList
+    description
+  }
+  B: createDeck(
+    description: "deck B description"
+    name: "deck B name"
+    deckList: "card A \n card-B \n "
+  ) {
+    name
+    deckList
+    description
+  }
 }
 
 mutation MyDeleteDeck {
-    deleteDeck(deckId: 5)
+  deleteDeck(deckId: 5)
 }
 
 query MyMyDecks {
-    myDecks {
-        name
-        id
-        deckList
-    }
+  myDecks {
+    name
+    id
+    deckList
+  }
 }
 
 mutation MyConfirmUser {
-    confirmUser(token: "50f80527-9552-4409-96f5-0900a613d881")
+  confirmUser(token: "50f80527-9552-4409-96f5-0900a613d881")
 }
 
 mutation MyForgotPassword {
-    forgotPassword(email: "p@p.com")
+  forgotPassword(email: "p@p.com")
 }
 
 mutation MyChangePassword {
-    changePassword(
-        data: { token: "4a860379-55b4-4227-8c2a-fcdde89d1878", password: "pp" }
-    ) {
-        id
-        nickName
-        email
-    }
+  changePassword(
+    data: { token: "4a860379-55b4-4227-8c2a-fcdde89d1878", password: "pp" }
+  ) {
+    id
+    nickName
+    email
+  }
 }
 
 mutation MyLogout {
-    logout
+  logout
 }
