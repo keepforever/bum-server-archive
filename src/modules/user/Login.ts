@@ -44,6 +44,8 @@ export class LoginResolver {
         // session to always be defined. 
         ctx.req.session!.userId = user.id;
 
+        console.log('\n', 'user', '\n', '\n', user )
+
         return user;
     }
 }
