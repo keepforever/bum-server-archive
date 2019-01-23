@@ -23,7 +23,7 @@ export class User extends BaseEntity {
 
     // TODO: switch default to 'false' to implement 
     // confirmation email pattern. 
-    @Column('bool', { default: true })
+    @Column('bool', { default: false })
     confirmed: boolean;
 
     @Field(() => Deck)
