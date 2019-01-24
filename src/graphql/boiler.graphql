@@ -43,18 +43,18 @@ query MeQuery {
 
 mutation MyCreateDeck {
   A: createDeck(
-    description: "deck A description"
-    name: "deck A name"
-    deckList: "card A \n card-B \n "
+    description: "you just win"
+    name: "Very Expensive"
+    deckList: "4 Rekindling Phoenix (RIX) 111\n6 Mountain (XLN) 272\n8 Forest (XLN) 276\n3 Skarrgan Hellkite (RNA) 114\n4 Incubation Druid (RNA) 131\n2 Kraul Harpooner (GRN) 136\n4 Rhythm of the Wild (RNA) 201"
   ) {
     name
     deckList
     description
   }
   B: createDeck(
-    description: "deck B description"
-    name: "deck B name"
-    deckList: "card A \n card-B \n "
+    description: "Win, win, win"
+    name: "Hell on Earth"
+    deckList: "4 Rekindling Phoenix (RIX) 111\n6 Mountain (XLN) 272\n8 Forest (XLN) 276\n3 Skarrgan Hellkite (RNA) 114\n4 Incubation Druid (RNA) 131\n2 Kraul Harpooner (GRN) 136\n4 Rhythm of the Wild (RNA) 201"
   ) {
     name
     deckList
