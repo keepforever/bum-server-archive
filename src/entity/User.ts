@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Deck } from './Deck';
+import { Vote } from './Vote';
 
 @ObjectType() // turns User entity into a graphql object type
 @Entity()
@@ -8,7 +9,7 @@ export class User extends BaseEntity {
     // @Field() tells graphql which fields to expose to be query-able
     @Field(() => ID)
     @PrimaryGeneratedColumn()
-    id: number; 
+    id: number;
 
     @Field()
     @Column()
@@ -21,12 +22,16 @@ export class User extends BaseEntity {
     @Column()
     password: string;
 
-    // TODO: switch default to 'false' to implement 
-    // confirmation email pattern. 
-    @Column('bool', { default: false })
+    // TODO: switch default to 'false' to implement
+    // confirmation email pattern.
+    @Column('bool', { default: true })
     confirmed: boolean;
 
     @Field(() => Deck)
     @OneToMany(() => Deck, deck => deck.user)
     decks: Deck[];
+
+    @Field(() => Vote, {nullable: true})
+    @OneToMany(() => Vote, vote => vote.user)
+    votes: Vote[];
 }

@@ -21,22 +21,24 @@ import { ChangePasswordResolver } from './modules/user/ChangePassword';
 import { LogoutResolver } from './modules/user/Logout';
 import { CreateDeckResolver } from './modules/user/CreateDeck';
 import { MyDecksResolver } from './modules/deck/MyDecks';
+import { VoteOnDeckResolver } from './modules/user/VoteOnDeck'
 
 const main = async () => {
     // createConnection reads from ormconfig.json
     await createConnection();
-    // ApolloServer constructor requires schema. 
+    // ApolloServer constructor requires schema.
     const schema = await buildSchema({
         resolvers: [
             LogoutResolver,
             ChangePasswordResolver,
-            RegisterResolver, 
-            LoginResolver, 
-            MeResolver, 
+            RegisterResolver,
+            LoginResolver,
+            MeResolver,
             ConfirmUserResolver,
             ForgotPasswordResolver,
             CreateDeckResolver,
-            MyDecksResolver
+            MyDecksResolver,
+            VoteOnDeckResolver
         ],
         authChecker: ({ context: { req } }) => {
              return !!req.session.userId
@@ -87,7 +89,7 @@ const main = async () => {
         }),
     );
 
-    apolloServer.applyMiddleware({ 
+    apolloServer.applyMiddleware({
         app,
         cors: false,
     });
@@ -96,7 +98,7 @@ const main = async () => {
         **************************************
 
             Server Started on http://localhost:4000/graphql
-        
+
         **************************************
         `);
     });

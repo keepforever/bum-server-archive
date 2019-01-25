@@ -3,10 +3,12 @@ import {
     Column,
     BaseEntity,
     PrimaryGeneratedColumn,
-    ManyToOne
+    ManyToOne,
+    OneToMany,
 } from "typeorm";
 import { User } from "./User";
 import { ObjectType, Field, ID } from "type-graphql";
+import { Vote } from './Vote';
 
 @ObjectType() // turns User entity into a graphql object type
 @Entity()
@@ -27,8 +29,16 @@ export class Deck extends BaseEntity {
     @Column()
     deckList: string;
 
-    @Column() 
+    @Field()
+    @Column('int', {default: 0})
+    voteScore: number;
+
+    @Column()
     userId: number;
+
+    @Field(() => Vote, {nullable: true})
+    @OneToMany(() => Vote, vote => vote.deck)
+    votes: Vote[];
 
     @ManyToOne(() => User, user => user.decks)
     user: User;
