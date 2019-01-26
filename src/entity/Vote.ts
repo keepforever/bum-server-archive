@@ -4,7 +4,6 @@ import {
     BaseEntity,
     PrimaryGeneratedColumn,
     ManyToOne,
-    OneToOne,
     JoinColumn,
 } from "typeorm";
 import { User } from "./User";
@@ -28,7 +27,7 @@ export class Vote extends BaseEntity {
     @Column()
     deckId: number;
 
-    @OneToOne(() => Deck)
+    @ManyToOne(() => Deck, deck => deck.votes)
     @JoinColumn()
     deck: Deck;
 

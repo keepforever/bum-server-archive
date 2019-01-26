@@ -38,6 +38,14 @@ query MeQuery {
     name
     deckList
     description
+    voteScore
+    votes {
+      quality
+    }
+  }
+  myVotes {
+    id
+    quality
   }
 }
 
@@ -68,9 +76,11 @@ mutation MyDeleteDeck {
 
 query MyMyDecks {
   myDecks {
+    voteScore
     name
     id
     deckList
+    voteScore
   }
 }
 
@@ -94,4 +104,20 @@ mutation MyChangePassword {
 
 mutation MyLogout {
   logout
+}
+
+mutation MyVoteOnDeck {
+  voteForDeck(quality: true, deckId: 3)
+}
+
+query MyAllDecks {
+  allDecks {
+    id
+    name
+    voteScore
+    deckList
+    votes {
+      quality
+    }
+  }
 }
